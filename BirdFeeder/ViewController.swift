@@ -10,9 +10,17 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var signUpButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateViewForAuthorizationSettings),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) {
             (granted, error) in
@@ -23,7 +31,30 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    @objc func updateViewForAuthorizationSettings() {
+    UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {
+            (settings) in
+            
+            switch settings.authorizationStatus {
+            case .denied, .notDetermined:
+                DispatchQueue.main.async { [weak self] in
+                    self?.signUpButton.isHidden = false
+                }
+            default:
+                DispatchQueue.main.async { [weak self] in
+                    self?.signUpButton.isHidden = true
+                }
+            }
+        })
+    }
+    
+    @IBAction func didTapSignup(_ sender: Any) {
+        UIApplication.shared.open(
+            URL(string: UIApplication.openSettingsURLString)!
+        )
+    }
+    
     @IBAction func didTapFeedBirds(_ sender: Any) {
         let content = UNMutableNotificationContent()
         content.title = "Feeding Time!"

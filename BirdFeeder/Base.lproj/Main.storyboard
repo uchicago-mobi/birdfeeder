@@ -25,14 +25,26 @@
                                     <action selector="didTapFeedBirds:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ljc-0Q-mDm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1S-Kl-8Ov">
+                                <rect key="frame" x="71" y="515" width="272" height="30"/>
+                                <state key="normal" title="Be the first to know when a bird arrives!"/>
+                                <connections>
+                                    <action selector="didTapSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HPz-Qp-wFS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="l1S-Kl-8Ov" firstAttribute="top" secondItem="6y6-4A-wzP" secondAttribute="bottom" constant="47" id="94E-nm-H6I"/>
                             <constraint firstItem="6y6-4A-wzP" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="NOV-s8-HOh"/>
+                            <constraint firstItem="l1S-Kl-8Ov" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QdX-GK-po1"/>
                             <constraint firstItem="6y6-4A-wzP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="haE-0M-Uuz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="signUpButton" destination="l1S-Kl-8Ov" id="vfb-UF-u1N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
